@@ -1,0 +1,51 @@
+# RedCell - Red Team Operations Lab
+# Python Dependencies
+
+# Core Framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# Cryptography & Security
+cryptography==41.0.7
+pycryptodome==3.19.0
+
+# HTTP & Networking
+requests==2.31.0
+urllib3==2.1.0
+
+# Network Scanning & Reconnaissance
+scapy==2.5.0
+python-nmap==0.7.1
+
+# Web Application Testing
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# Database
+sqlalchemy==2.0.23
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Code Quality
+black==23.12.0
+flake8==6.1.0
+pylint==3.0.3
+
+# Utilities
+python-dotenv==1.0.0
+colorama==0.4.6
+rich==13.7.0
+click==8.1.7
+
+# Data Processing
+pyyaml==6.0.1
+jinja2==3.1.2
+
+# Logging & Monitoring
+loguru==0.7.2
+
+# Development
+ipython==8.18.1

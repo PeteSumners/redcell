@@ -1,0 +1,106 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# C2 Logs & Operational Data
+c2/server/logs/*.log
+c2/server/logs/*.json
+*.log
+logs/
+
+# Exfiltrated Data (testing artifacts)
+exfiltration/data/
+exfiltration/staged/
+*.exfil
+
+# Credentials & Secrets
+.env
+secrets/
+*.key
+*.pem
+*.p12
+credentials.json
+config.secret.yml
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Target Environment Data
+targets/data/
+targets/databases/
+targets/uploads/
+
+# Compiled Implants
+*.pyc
+implant_compiled/
+payloads/compiled/
+
+# Reports & Screenshots (keep templates only)
+docs/reports/*.pdf
+docs/screenshots/*.png
+docs/screenshots/*.jpg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+# OPSEC - Don't commit real infrastructure details
+infrastructure/real/
+.infrastructure.yml

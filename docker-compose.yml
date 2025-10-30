@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Target Web Application - Initial Access Point
+  web-target:
+    build: ./targets/docker/web_app
+    container_name: redcell-web-target
+    ports:
+      - "8080:80"
+    networks:
+      - dmz
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    volumes:
+      - ./targets/docker/web_app:/app
+    restart: unless-stopped
+
+  # Database for Web Application
+  web-db:
+    image: mysql:8.0
+    container_name: redcell-web-db
+    networks:
+      - dmz
+    environment:
+      - MYSQL_ROOT_PASSWORD=weak_password_123
+      - MYSQL_DATABASE=webapp
+      - MYSQL_USER=webuser
+      - MYSQL_PASSWORD=password123
+    volumes:
+      - web_db_data:/var/lib/mysql
+
+  # DMZ Jump Host - Pivot Point
+  dmz-host:
+    build: ./targets/docker/dmz
+    container_name: redcell-dmz-host
+    networks:
+      - dmz
+      - internal
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./targets/docker/dmz:/opt
+    restart: unless-stopped
+
+  # Internal High-Value Target
+  internal-server:
+    build: ./targets/docker/internal
+    container_name: redcell-internal-server
+    networks:
+      - internal
+    environment:
+      - SENSITIVE_DATA=true
+    volumes:
+      - ./targets/docker/internal:/app
+      - internal_data:/data
+    restart: unless-stopped
+
+  # Monitoring/Logging Simulation (to practice evasion)
+  log-server:
+    image: alpine:latest
+    container_name: redcell-logs
+    networks:
+      - dmz
+      - internal
+    command: tail -f /dev/null
+    volumes:
+      - ./targets/logs:/logs
+
+networks:
+  dmz:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+  internal:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+
+volumes:
+  web_db_data:
+  internal_data:

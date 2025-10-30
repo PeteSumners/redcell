@@ -1,0 +1,79 @@
+===============================================================================
+CLAUDE CODE AUTONOMOUS PROJECT WORKFLOW - QUICK START GUIDE
+===============================================================================
+
+WHAT IS THIS?
+-------------
+This folder is set up so Claude Code can work autonomously on your project
+without asking for permission. It will follow a roadmap, test as it goes,
+and only mark tasks complete when they actually work.
+
+
+HOW TO START A NEW PROJECT
+---------------------------
+
+1. Open Claude Code in this folder:
+
+   cd C:\Users\PeteS\Desktop\ai_job
+   claude
+
+
+2. Run the init command:
+
+   /init
+
+
+3. Answer Claude's questions about your project:
+   - What are you building?
+   - What tech stack?
+   - What features?
+   - How to test it?
+
+
+4. Claude will create a detailed ROADMAP.md and initial project structure
+
+
+5. When you're ready, run:
+
+   /start
+
+
+6. Claude will work through the roadmap autonomously until done!
+
+
+WHAT HAPPENS DURING /start?
+----------------------------
+- Reads ROADMAP.md
+- Creates a todo list from it
+- Works through each task one by one
+- Runs tests after changes
+- Only marks tasks complete when tests pass
+- Reports to you when done (or if blocked)
+
+
+IF YOU ALREADY HAVE A PLAN
+---------------------------
+Skip /init and just edit ROADMAP.md directly with your plan, then run /start
+
+
+IMPORTANT NOTES
+---------------
+- Claude has full permissions in THIS FOLDER ONLY
+- It will test constantly to make sure things work
+- It won't mark tasks done if tests are failing
+- If it gets stuck, it will ask you for help
+
+
+FILES IN THIS SETUP
+-------------------
+.claude/settings.json       - Enables autonomous mode
+.claude/commands/init.md    - Interactive project setup
+.claude/commands/start.md   - Autonomous execution engine
+ROADMAP.md                  - Your project plan (edit or use /init)
+
+
+THAT'S IT!
+----------
+Just run /init to get started, then /start to let Claude build it.
+
+===============================================================================
