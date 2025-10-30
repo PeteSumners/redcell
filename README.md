@@ -1,5 +1,11 @@
 # RedCell - Advanced Red Team Operations Lab
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-39%20passing-brightgreen.svg)](tests/)
+[![Phase](https://img.shields.io/badge/phase-1%2F6-yellow.svg)](ROADMAP.md)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)]()
+
 **A comprehensive red team operations portfolio demonstrating advanced offensive security capabilities**
 
 ---
@@ -20,179 +26,342 @@ Unauthorized access to computer systems is illegal under laws including the Comp
 
 ## Overview
 
-RedCell is an end-to-end red team operations lab environment that showcases the complete attack lifecycle from reconnaissance to data exfiltration. This project demonstrates:
+RedCell is an end-to-end red team operations lab environment that showcases the complete attack lifecycle. This educational project demonstrates:
 
-- Full attack chain methodology (aligned with MITRE ATT&CK)
-- Custom command & control (C2) infrastructure
-- Advanced persistence and evasion techniques
-- Network pivoting and lateral movement
-- Professional red team documentation and reporting
+- **Custom C2 Framework** - Built from scratch with AES-256-GCM encryption
+- **Full Attack Chain** - Aligned with MITRE ATT&CK framework
+- **Professional Tooling** - Production-quality code with comprehensive testing
+- **Documented Methodology** - Detailed writeups and technical documentation
+
+**Current Status:** ✅ **Phase 1 Complete** - Foundation & Infrastructure
 
 **Purpose:** Educational portfolio project for demonstrating advanced cybersecurity skills to potential employers.
 
-## Features
+---
 
-### Command & Control
-- Custom C2 server with encrypted communications (AES)
-- Multiple communication protocols (HTTP/HTTPS, DNS tunneling)
-- Beacon implants with jitter and randomization
-- Operator CLI interface
+## Phase 1 Features (Completed)
 
-### Attack Capabilities
-- Automated reconnaissance and enumeration
-- Multiple initial access vectors (SQLi, file upload, command injection)
-- Privilege escalation exploits
-- 5+ persistence mechanisms
-- Network pivoting through compromised hosts
-- Covert data exfiltration channels
+### ✅ Command & Control Infrastructure
+- Custom C2 server with encrypted communications (AES-256-GCM)
+- RESTful API with 8 endpoints
+- Thread-safe multi-implant management
+- Per-implant encryption keys
+- Automated task queuing and execution
 
-### Defensive Evasion
-- Payload obfuscation
-- Anti-forensics techniques
-- Log tampering and timestomping
-- Traffic obfuscation
+### ✅ Python Implant
+- Automatic registration with C2
+- Encrypted beacon with configurable interval and jitter
+- 7 built-in commands (shell, sysinfo, pwd, ls, sleep, exit)
+- Resilient error handling and retry logic
 
-### Testing & Quality
-- Comprehensive test suite (pytest)
-- 70%+ code coverage
-- Integration tests for full attack chain
-- Defensive validation (blue team perspective)
+### ✅ Operator Interface
+- Interactive CLI with Rich library
+- Color-coded output and tables
+- Context-aware prompt
+- Real-time task management
 
-## Project Structure
+### ✅ Target Environment
+- Vulnerable web application with OWASP Top 10 vulnerabilities
+  - SQL Injection
+  - Command Injection
+  - Unrestricted File Upload
+  - Server-Side Template Injection (SSTI)
+- Dockerized infrastructure with isolated networks
+- DMZ and internal network segments
 
-```
-redcell/
-├── c2/                    # Command & Control infrastructure
-├── recon/                 # Reconnaissance tools
-├── initial_access/        # Exploitation tools
-├── post_exploitation/     # Post-exploitation modules
-├── lateral_movement/      # Pivoting and lateral movement
-├── exfiltration/         # Data exfiltration tools
-├── evasion/              # Defensive evasion techniques
-├── targets/              # Vulnerable target environments
-├── docs/                 # Documentation and writeups
-└── tests/                # Test suite
-```
+### ✅ Testing & Quality
+- 39 comprehensive tests (unit + integration)
+- 100% coverage on crypto module
+- 98% coverage on tasking module
+- Thread safety verification
+
+---
 
 ## Quick Start
 
 ### Prerequisites
 
-- Docker & Docker Compose
 - Python 3.9+
+- Docker & Docker Compose (for target environment)
 - Git
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd cyber
+git clone https://github.com/PeteSumners/redcell.git
+cd redcell
 
-# Create Python virtual environment
+# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r requirements_minimal.txt
 
-# Start target infrastructure
-docker-compose up -d
-
-# Run tests
-pytest
+# Verify installation
+python -m pytest tests/ -v
 ```
 
-### Usage
+Expected output: ✅ `39 passed`
 
+### Basic Usage (3 Terminals)
+
+**Terminal 1 - Start C2 Server:**
 ```bash
-# Start the C2 server
 python c2/server/main.py
-
-# In another terminal, start the operator interface
-python c2/operator/cli.py
-
-# Deploy an implant to a target (example)
-python initial_access/sqli_exploit.py --target http://target-ip
 ```
 
-## Roadmap
+**Terminal 2 - Deploy Implant:**
+```bash
+python c2/implant/basic_implant.py --c2 http://127.0.0.1:8443
+```
 
-See [ROADMAP.md](ROADMAP.md) for the complete implementation plan broken down into 6 phases over 12 weeks.
+**Terminal 3 - Operator Interface:**
+```bash
+python c2/operator/cli.py
+```
 
-**Current Status:** Phase 1 - Foundation & Infrastructure
+**📖 For detailed instructions, see [USER_GUIDE.md](USER_GUIDE.md)**
+
+---
+
+## Project Structure
+
+```
+redcell/
+├── c2/                          # Command & Control infrastructure
+│   ├── server/                  # C2 server (crypto, tasking, API)
+│   ├── implant/                 # Python beacon implant
+│   └── operator/                # CLI operator interface
+├── targets/                     # Vulnerable target environments
+│   └── docker/                  # Dockerized web app, DMZ, internal
+├── tests/                       # Comprehensive test suite
+│   ├── unit/                    # Unit tests (crypto, tasking)
+│   └── integration/             # Integration tests
+├── utils/                       # Shared utilities
+│   ├── logger.py                # Structured logging
+│   ├── config.py                # Configuration management
+│   └── helpers.py               # Helper functions
+├── docs/                        # Documentation
+│   └── writeups/                # Technical writeups
+├── requirements_minimal.txt     # Python dependencies
+├── docker-compose.yml          # Target infrastructure
+└── USER_GUIDE.md               # Complete user guide
+```
+
+---
 
 ## Documentation
 
-- [ROADMAP.md](ROADMAP.md) - Complete project roadmap and implementation plan
-- [docs/writeups/](docs/writeups/) - Technical writeups for each phase
-- [docs/reports/](docs/reports/) - Professional red team reports
+### User Documentation
+- **[USER_GUIDE.md](USER_GUIDE.md)** - Complete user guide with examples
+- **[ROADMAP.md](ROADMAP.md)** - 6-phase implementation plan (12 weeks)
+- **[PHASE1_COMPLETE.md](PHASE1_COMPLETE.md)** - Phase 1 completion summary
 
-## Ethical & Legal Notice
+### Technical Documentation
+- **[docs/writeups/phase1_foundation.md](docs/writeups/phase1_foundation.md)** - Phase 1 technical writeup
+- **Code Documentation** - Comprehensive docstrings and comments throughout
 
-**IMPORTANT:** This project is designed exclusively for:
-- Authorized security testing
-- Educational purposes
-- Portfolio demonstration
-- Isolated lab environments
+---
 
-**Never use these tools on:**
-- Systems you don't own
-- Systems without explicit written authorization
-- Production environments without proper authorization
+## Architecture
 
-All testing must be conducted in isolated, controlled lab environments. Unauthorized access to computer systems is illegal.
+```
+┌──────────────────────────────────────────────────────────────┐
+│                     RED TEAM OPERATOR                        │
+│                                                              │
+│  ┌────────────────┐              ┌──────────────────┐      │
+│  │  Operator CLI  │──────────────│   C2 Server      │      │
+│  │  (cli.py)      │   REST API   │   :8443          │      │
+│  └────────────────┘              └──────────┬───────┘      │
+│                                              │              │
+└──────────────────────────────────────────────┼──────────────┘
+                                               │
+                                  Encrypted Communications
+                                    (AES-256-GCM)
+                                               │
+              ┌────────────────────────────────┼─────────────┐
+              │                                │             │
+    ┌─────────▼─────────┐          ┌──────────▼──────┐  ┌───▼────────┐
+    │   Web App Target  │          │   DMZ Host      │  │  Internal  │
+    │   (172.20.0.x)    │──────────│  (Pivot Point)  │──│  Server    │
+    │   :8080           │   SSH    │  172.20.x.x     │  │ (172.21.x) │
+    │                   │          │  172.21.x.x     │  │            │
+    │ Vulnerabilities:  │          └─────────────────┘  │ Sensitive  │
+    │ • SQLi            │                               │ Data       │
+    │ • Command Inject  │                               └────────────┘
+    │ • File Upload     │
+    │ • SSTI            │
+    └───────────────────┘
+```
 
-## Testing Strategy
+---
 
-This project includes comprehensive testing:
+## Testing
 
-- **Unit Tests:** Individual tool and function testing
-- **Integration Tests:** End-to-end attack chain validation
-- **Manual Testing:** Operational security testing
-- **Defensive Validation:** Blue team perspective analysis
+Run the full test suite:
 
-Run tests with: `pytest -v --cov`
+```bash
+python -m pytest tests/ -v
+```
+
+**Test Coverage:**
+- 13 crypto unit tests (100% coverage)
+- 18 tasking unit tests (98% coverage)
+- 8 integration tests
+
+Run with coverage report:
+
+```bash
+python -m pytest tests/ -v --cov
+```
+
+---
+
+## Roadmap
+
+RedCell is planned as a 6-phase project over 12 weeks:
+
+- ✅ **Phase 1** - Foundation & Infrastructure (Complete)
+- ⏳ **Phase 2** - Reconnaissance & Initial Access (Planned)
+- ⏳ **Phase 3** - Post-Exploitation & Persistence (Planned)
+- ⏳ **Phase 4** - Lateral Movement & Pivoting (Planned)
+- ⏳ **Phase 5** - Advanced C2 & Data Exfiltration (Planned)
+- ⏳ **Phase 6** - Documentation & Professionalization (Planned)
+
+See [ROADMAP.md](ROADMAP.md) for complete details.
+
+---
 
 ## Technologies Used
 
-- **Python 3.9+** - Core language for tooling
-- **Flask** - C2 server framework
-- **Docker/Docker Compose** - Target environment isolation
-- **pytest** - Testing framework
-- **cryptography** - Encryption for C2 communications
-- **requests** - HTTP client for exploits
+| Component | Technology |
+|-----------|-----------|
+| Language | Python 3.9+ |
+| C2 Server | Flask (REST API) |
+| Encryption | AES-256-GCM (cryptography library) |
+| Testing | pytest with coverage |
+| CLI | Rich (terminal UI) |
+| Containers | Docker & Docker Compose |
+| Target App | Flask (vulnerable by design) |
+
+---
+
+## Security Implementation
+
+### Encryption
+- **Algorithm:** AES-256-GCM (Authenticated Encryption)
+- **Key Size:** 256 bits (32 bytes)
+- **Nonce:** 96 bits, randomly generated per message
+- **Transport:** Base64 encoding for JSON compatibility
+
+### OPSEC Features
+- **Beacon Jitter:** ±20% randomization to avoid pattern detection
+- **Per-Implant Keys:** Unique encryption keys for each implant
+- **Authenticated Encryption:** Tamper detection with GCM mode
+- **Thread Safety:** Concurrent multi-implant support
+
+---
 
 ## Learning Resources
 
-This project draws from industry-standard frameworks and methodologies:
+This project draws from industry-standard frameworks:
 
-- MITRE ATT&CK Framework
-- OWASP Top 10
-- Red Team Field Manual (RTFM)
-- NIST Cybersecurity Framework
+- [MITRE ATT&CK Framework](https://attack.mitre.org/) - Adversary tactics and techniques
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Web application vulnerabilities
+- [Red Team Field Manual (RTFM)](https://www.amazon.com/Rtfm-Red-Team-Field-Manual/dp/1494295504) - Red team operations
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) - Security standards
+
+---
 
 ## Contributing
 
-This is a personal portfolio project, but suggestions and feedback are welcome via issues.
+This is a personal portfolio project, but suggestions and feedback are welcome!
+
+- **Issues:** [GitHub Issues](https://github.com/PeteSumners/redcell/issues)
+- **Discussions:** Feel free to open an issue for questions
+
+---
+
+## Ethical & Legal Notice
+
+**⚠️ CRITICAL LEGAL WARNING ⚠️**
+
+This project is designed **EXCLUSIVELY** for:
+- Authorized security testing with **written permission**
+- Educational purposes in **isolated lab environments**
+- Portfolio demonstration
+- CTF competitions and security training
+
+**NEVER use these tools on:**
+- ❌ Systems you don't own
+- ❌ Systems without **explicit written authorization**
+- ❌ Production environments without proper approval
+- ❌ Any system where you lack legal permission
+
+**Legal Consequences:**
+Unauthorized access to computer systems is a **federal crime** under:
+- Computer Fraud and Abuse Act (CFAA) - U.S.
+- Computer Misuse Act - UK
+- Similar laws in other jurisdictions
+
+Violations can result in **criminal prosecution, fines, and imprisonment**.
+
+**Use Responsibly. Stay Legal. Get Permission.**
+
+---
 
 ## License
 
-This project is for educational purposes only. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+
+**Educational Use Only.** The author assumes **NO LIABILITY** for misuse of this software.
+
+---
 
 ## Author
 
 **Pete Sumners**
-Cybersecurity Portfolio Project
-Contact: petesumners@outlook.com
-GitHub: [Your GitHub Profile]
 
-## Acknowledgments
-
-- MITRE ATT&CK for tactical framework
-- OWASP for vulnerability patterns
-- The cybersecurity community for tools and techniques
+- **Email:** petesumners@outlook.com
+- **GitHub:** [@PeteSumners](https://github.com/PeteSumners)
+- **Project:** Cybersecurity Portfolio
 
 ---
 
-**Disclaimer:** The tools and techniques in this repository are provided for educational purposes and authorized security testing only. The author assumes no liability for misuse of this software.
+## Acknowledgments
+
+- **MITRE Corporation** - ATT&CK Framework
+- **OWASP Foundation** - Vulnerability patterns and testing guidelines
+- **Cybersecurity Community** - Tools, techniques, and shared knowledge
+- **Open Source Contributors** - Libraries and frameworks used in this project
+
+---
+
+## Project Statistics
+
+- **Lines of Code:** ~3,000+ (excluding tests)
+- **Test Lines:** ~700
+- **Test Coverage:** 100% (crypto), 98% (tasking)
+- **Tests Passing:** 39/39 ✅
+- **Phase Completion:** 1/6 (16.7%)
+- **Time Investment:** Autonomous development in single session
+
+---
+
+**⭐ If you found this project useful, please consider starring it on GitHub!**
+
+**📖 For complete usage instructions, see [USER_GUIDE.md](USER_GUIDE.md)**
+
+**🔒 Always practice responsible security research.**
+
+---
+
+*Last Updated: October 30, 2025*
+*Version: 1.0.0 (Phase 1 Complete)*
