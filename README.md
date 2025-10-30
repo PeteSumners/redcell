@@ -2,6 +2,22 @@
 
 **A comprehensive red team operations portfolio demonstrating advanced offensive security capabilities**
 
+---
+
+## ⚠️ EDUCATIONAL USE ONLY
+
+This project is designed exclusively for:
+- ✅ Educational purposes
+- ✅ Authorized security testing
+- ✅ Portfolio demonstration
+- ✅ Isolated lab environments
+
+**🚫 NEVER use these tools on systems you don't own or without explicit written authorization.**
+
+Unauthorized access to computer systems is illegal under laws including the Computer Fraud and Abuse Act (CFAA) and similar international laws.
+
+---
+
 ## Overview
 
 RedCell is an end-to-end red team operations lab environment that showcases the complete attack lifecycle from reconnaissance to data exfiltration. This project demonstrates:
@@ -166,9 +182,10 @@ This project is for educational purposes only. See [LICENSE](LICENSE) for detail
 
 ## Author
 
-**Pete S.**
+**Pete Sumners**
 Cybersecurity Portfolio Project
-Contact: [Your contact info]
+Contact: petesumners@outlook.com
+GitHub: [Your GitHub Profile]
 
 ## Acknowledgments
 
