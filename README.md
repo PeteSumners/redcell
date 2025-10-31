@@ -24,6 +24,23 @@ Unauthorized access to computer systems is illegal under laws including the Comp
 
 ---
 
+## 🚀 NEW TO CYBERSECURITY? START HERE!
+
+**👉 [GETTING_STARTED.md](GETTING_STARTED.md) - Complete Beginner's Guide**
+
+If you're new to red teaming, ethical hacking, or cybersecurity in general, start with our **ELI5 (Explain Like I'm 5) guide**. It explains:
+
+- What RedCell actually does (in plain English)
+- How real attackers work (step-by-step)
+- How to set up a safe practice environment
+- Legal and safety warnings you MUST understand
+- Your first hands-on test walkthrough
+- Learning resources and career guidance
+
+**Everyone should read [GETTING_STARTED.md](GETTING_STARTED.md) first, regardless of experience level.**
+
+---
+
 ## Overview
 
 RedCell is an end-to-end red team operations lab environment that showcases the complete attack lifecycle. This educational project demonstrates:
@@ -160,6 +177,7 @@ redcell/
 ## Documentation
 
 ### User Documentation
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** - 🌟 **START HERE!** Beginner-friendly ELI5 guide
 - **[USER_GUIDE.md](USER_GUIDE.md)** - Complete user guide with examples
 - **[ROADMAP.md](ROADMAP.md)** - 6-phase implementation plan (12 weeks)
 - **[PHASE1_COMPLETE.md](PHASE1_COMPLETE.md)** - Phase 1 completion summary
